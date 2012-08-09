@@ -104,6 +104,12 @@ jShowOff has several options for customization.  Pass these settings as an objec
 		<td>3000</td>
 		<td>Time each slide is shown in milliseconds.</td>
 	</tr>
+	<tr>
+		<td>hide_controls_when_not_needed</td>
+		<td>boolean</td>
+		<td>true</td>
+		<td>Hide controls panel when not needed (gallery.length == 1)</td>
+	</tr>
 </table>
 
 Additionally, the value of the `title` attribute on the 'slide' elements will be inserted as the text for the corresponding 'slide link' in lieu of the default numeric value.
