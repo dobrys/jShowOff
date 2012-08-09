@@ -18,6 +18,7 @@ effect :			transition effect [string: 'fade', 'slideLeft' or 'none', defaults to
 hoverPause :		whether to pause on hover [boolean, defaults to true]
 links :				whether to create & display numeric links to each slide [boolean, defaults to true]
 speed :				time each slide is shown [integer, milliseconds, defaults to 3000]
+hide_controls_when_not_needed: Hide Controls Bar when Not Needed (gallery.length == 1) [boolean, defaults to true]
 
 */
 
@@ -38,6 +39,7 @@ speed :				time each slide is shown [integer, milliseconds, defaults to 3000]
 				next :		'Next',
 				previous :	'Previous'
 			},
+			hide_controls_when_not_needed:true,
 			effect : 'fade',
 			hoverPause : true,
 			links : true,
@@ -107,6 +109,13 @@ speed :				time each slide is shown [integer, milliseconds, defaults to 3000]
 			if(gallery.length<1){
 				$('.'+uniqueClass).append('<p>For jShowOff to work, the container element must have child elements.</p>');
 			};
+
+			// When galery lenght == 1 - we don't need controls in fact 
+			if ( gallery.length == 1 ) {				
+				if(config.controls && config.hide_controls_when_not_needed){
+					HideControls();
+				}
+			}
 
 			
 			// utility for loading slides
@@ -222,7 +231,12 @@ speed :				time each slide is shown [integer, milliseconds, defaults to 3000]
 						if($(this).hasClass('jshowoff-next')) $(this).click(function(){ next(); return false; });
 	
 				});
-			};	
+			};
+
+			//hide controls panel
+			function HideControls() {				
+				$( '.' + uniqueClass + '-controls' ).hide();
+			}
 
 			// generate and add slide links
 			function addSlideLinks() {
